@@ -1,13 +1,14 @@
 public class Main {
     public static Employee[] employee = new Employee[10];
 
-    public static void listOfEmployees(){
+    public static void getListOfEmployees(){
         System.out.println("Полный список сотрудников:");
         for (int i = 0; i < employee.length; i++) {
             System.out.println(employee[i]);
         }
     }
-    public static void maxSalary (int maxSalary){
+    public static void getMaxSalary (){
+        int maxSalary = Integer.MIN_VALUE;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getSalary() > maxSalary) {
                 maxSalary = employee[i].getSalary();
@@ -19,7 +20,8 @@ public class Main {
             }
         }
     }
-    public static void minSalary(int minSalary){
+    public static void getMinSalary(){
+        int minSalary =Integer.MAX_VALUE;
         for (int i = 0; i < employee.length; i++) {
             if (minSalary > employee[i].getSalary()) {
                 minSalary = employee[i].getSalary();
@@ -31,20 +33,22 @@ public class Main {
             }
         }
     }
-    public static double sumSalary (double sum){
+    public static double getSumSalary (){
+        double sum = 0;
         for (int i = 0; i < employee.length; i++) {
             sum += employee[i].getSalary();
         }
         return sum;
     }
-    public static double averageSalary(double sum){
+    public static double getAverageSalary(){
+        double sum = 0;
         for (int i = 0; i < employee.length; i++) {
             sum += employee[i].getSalary();
         }
-        double averageSalary = ((sumSalary(0)) / employee.length);
+        double averageSalary = sum / employee.length;
         return averageSalary;
     }
-    public static void listOfEmployeesNames(){
+    public static void getListOfEmployeesNames(){
         System.out.println("Список ФИО всех сотрудников:");
         for (int i = 0; i < employee.length; i++) {
             System.out.println(employee[i].getSurnames()+" "+employee[i].getName()+" "+employee[i].getMiddleName());
@@ -58,7 +62,7 @@ public class Main {
             System.out.println(employee[i]);
         }
     }
-    public static void listByDepartment(int numberDepartment){
+    public static void getListByDepartment(int numberDepartment){
         System.out.println("Список сотрудников из этого отдела:");
         for (int i = 0; i < employee.length; i++){
             if(numberDepartment == employee[i].getDepartment()){
@@ -66,7 +70,8 @@ public class Main {
             }
         }
     }
-    public static int sumSalaryByDepartment(int numberDepartment, int sumByDepartment){
+    public static int getSumSalaryByDepartment(int numberDepartment){
+        int sumByDepartment = 0;
         for (int i = 0; i < employee.length; i++){
             if(numberDepartment == employee[i].getDepartment()){
                 sumByDepartment += employee[i].getSalary();
@@ -74,7 +79,7 @@ public class Main {
         }
         return sumByDepartment;
     }
-    public static void minSalaryByDepartment (int numberDepartment){
+    public static void getMinSalaryByDepartment (int numberDepartment){
         int minSalaryByDepartment = Integer.MAX_VALUE;
         for (int i = 0; i < employee.length; i++) {
             if (numberDepartment == employee[i].getDepartment() && minSalaryByDepartment > employee[i].getSalary()) {
@@ -87,7 +92,7 @@ public class Main {
             }
         }
     }
-    public static void maxSalaryByDepartment (int numberDepartment){
+    public static void getMaxSalaryByDepartment (int numberDepartment){
         int maxSalaryByDepartment = Integer.MIN_VALUE;
         for (int i = 0; i < employee.length; i++) {
             if(numberDepartment == employee[i].getDepartment() && employee[i].getSalary() > maxSalaryByDepartment) {
@@ -100,7 +105,8 @@ public class Main {
             }
         }
     }
-    public static double averageSalaryByDepartment (int numberDepartment, double sumByDepartment){
+    public static double getAverageSalaryByDepartment (int numberDepartment){
+        double sumByDepartment = 0;
         double j = 0;
         for (int i = 0; i < employee.length; i++){
             if(numberDepartment == employee[i].getDepartment()){
@@ -121,7 +127,7 @@ public class Main {
             }
         }
     }
-    public static void minMaxFromNumber(int number){
+    public static void getMinMaxFromNumber(int number){
         for (int i = 0; i < employee.length; i++) {
             if(number > employee[i].getSalary()) {
                 System.out.println("Зарплата меньше числа: " + employee[i].toStringByDepartment());
@@ -148,17 +154,17 @@ public class Main {
 
         System.out.println("Базовая сложность:");
         System.out.println("");
-        listOfEmployees();
+        getListOfEmployees();
         System.out.println("");
-        maxSalary(employee[0].getSalary());
+        getMaxSalary();
         System.out.println("");
-        minSalary(employee[7].getSalary());
+        getMinSalary();
         System.out.println("");
-        System.out.println("Сумма затрат на зарплаты в месяц: " + sumSalary(0));
+        System.out.println("Сумма затрат на зарплаты в месяц: " + getSumSalary());
         System.out.println("");
-        System.out.println("Среднее значение зарплат на зарплаты в месяц: " + averageSalary(0));
+        System.out.println("Среднее значение зарплат на зарплаты в месяц: " + getAverageSalary());
         System.out.println("");
-        listOfEmployeesNames();
+        getListOfEmployeesNames();
         System.out.println("");
         employee[6].setSalary(100000);
         employee[6].setDepartment(5);
@@ -166,20 +172,20 @@ public class Main {
         System.out.println("");
         System.out.println("Повышенная сложность:");
         System.out.println("");
-        minSalaryByDepartment(1);
+        getMinSalaryByDepartment(1);
         System.out.println("");
-        maxSalaryByDepartment(1);
+        getMaxSalaryByDepartment(1);
         System.out.println("");
-        System.out.println("Сумма затрат на зарплату в месяц по отделу: " + sumSalaryByDepartment(1, 0));
+        System.out.println("Сумма затрат на зарплату в месяц по отделу: " + getSumSalaryByDepartment(1));
         System.out.println("");
-        System.out.println("Среднее значение запрат в месяц по отделу: " + averageSalaryByDepartment(1, 0));
+        System.out.println("Среднее значение запрат в месяц по отделу: " + getAverageSalaryByDepartment(1));
         System.out.println("");
         patchIndexing(10);
         System.out.println("");
-        listByDepartment(1);
+        getListByDepartment(1);
         System.out.println("");
         patchIndexingByDepartment(100,1);
         System.out.println("");
-        minMaxFromNumber(44000);
+        getMinMaxFromNumber(44000);
     }
 }
